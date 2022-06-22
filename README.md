@@ -12,7 +12,7 @@ This project implements the following:
   - Time complexity of n^2.
   - This algorithm does not find the optimum route. See 'Improvement Checklist' section for all limitations and proposed solutions. 
 
-Demo: [https://travelling-politician.netlify.app/]()
+Demo: [https://travelling-politician.netlify.app/](https://travelling-politician.netlify.app/)
 
 ## Stack
 - Typescript
