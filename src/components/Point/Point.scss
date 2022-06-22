@@ -1,0 +1,29 @@
+.point {
+  border-radius: 50%;
+  background-color: rgb(18, 109, 228);
+  position: absolute;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(253, 179, 43);
+    z-index: 2;
+    transform: scale(2);
+  }
+
+  &--selected {
+    background-color: rgb(253, 179, 43);
+    z-index: 2;
+    transform: scale(2);
+  }
+
+  &--neighbour {
+    background-color: rgb(253, 179, 43);
+    z-index: 2;
+    outline: 1px solid rgb(253, 179, 43);
+    outline-offset: 3px;
+
+    &:hover {
+      transform: scale(1);
+    }
+  }
+}

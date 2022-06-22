@@ -1,0 +1,9 @@
+.plotter {
+  position: relative;
+  margin: auto;
+
+  &__points {
+    position: absolute;
+    top: 0;
+  }
+}

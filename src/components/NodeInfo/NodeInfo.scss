@@ -1,0 +1,28 @@
+.select {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: rgb(253, 179, 43);
+  color: white;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
+
+.info {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  color: white;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  margin: 0;
+
+  &__cell {
+    position: relative;
+    padding: 0 3rem;
+  }
+}
