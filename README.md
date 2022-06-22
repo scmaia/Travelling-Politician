@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/76a2f4ed-6553-4ba4-8580-7b912ebf3015/deploy-status)](https://app.netlify.com/sites/travelling-politician/deploys)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Introduction
 
-## Available Scripts
+## Overview
+This project seeks to solve the challange of finding an acceptable route for an individual touring a number of locations with known latitude and longitude provided in a randomly ordered CSV file.
 
-In the project directory, you can run:
+This project implements the following:
+- File uploading and data parsing.
+- Plotting functionality to visualize each node and connections to preceding and following notes.
+- Simple route-finding algorithm based on connecting nearest neigbours.
+  - Time complexity of n^2.
+  - This algorithm does not find the optimum route. See 'Improvement Checklist' section for all limitations and proposed solutions. 
 
-### `npm start`
+Demo: [https://travelling-politician.netlify.app/]()
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Stack
+- Typescript
+- React.js
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Getting Started
 
-### `npm test`
+## Local
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Assumes you already have `git`, `node (15.3.0 up)`, and `npm` installed on your machine.
 
-### `npm run build`
+- Clone repo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone ...
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install
+```
 
-### `npm run eject`
+- Start dev environment:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+View website on http://localhost:3000
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Architecture
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ./components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This is where all the components live.  
+Given more time I would decouple components from project-specific logic and separate stateless components here and containers elsewhere.
 
-### Code Splitting
+### ./pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This folder hosts the one project page loaded through App.tsx
 
-### Analyzing the Bundle Size
+### ./utils
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This is where algorithm and utility functions live.  
+Given more time I would separate the algorithm(s) into a library.
 
-### Making a Progressive Web App
+# Improvement Checklist
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Additional Features
 
-### Advanced Configuration
+- Automatically generate adjustment parameters for plotting based on ranges of latitude & longitude on file.
+- Add zoom and pan manual controls.
+- Add option to throttle algorithm execution in order to visualize it's steps.
+- Make file parser more flexible to accept different data formats and any number of columns (as long as there's lat and long)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Better algorithm
 
-### Deployment
+- I attempted to implement a genetic algorithm to solve TSP, however I had to abandon it due to time restrictions.
+- Given more time I would resume implementing the genetic algorithm, as well as would implement a dynamic programming approach for comparison.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Accessibility
 
-### `npm run build` fails to minify
+Run accessibility tests with Axe Dev Tools
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Performance Audit
+
+Run performance audit with Lighthouse (in Chrome Dev Tools)
+
+### Test
+
+- Add unit tests for all components & functions
+- Add end-to-end tests 

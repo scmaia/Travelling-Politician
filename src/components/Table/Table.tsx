@@ -15,8 +15,8 @@ const Table: React.FC<ITableProps> = ({
 }) => {
   const headers = Object.keys(cities[0]);
 
-  const onPointSelection = (id: number) => {
-    setSelectedNode(id);
+  const onPointSelection = (index: number) => {
+    setSelectedNode(index);
   };
 
   return (
@@ -36,8 +36,8 @@ const Table: React.FC<ITableProps> = ({
             <Row
               key={`order${index + 1}`}
               columns={[index + 1, ...Object.values(city)]}
-              isSelected={selectedNode === index + 1}
-              onClick={() => onPointSelection(index + 1)}
+              isSelected={selectedNode === index}
+              onClick={() => onPointSelection(index)}
             />
           ))}
         </tbody>

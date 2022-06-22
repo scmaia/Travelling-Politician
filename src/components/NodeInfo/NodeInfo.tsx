@@ -17,20 +17,20 @@ const NodeInfo: React.FC<INodeInfoProps> = ({ cities, selectedNode }) => {
     return <p className="select">Select city for more information</p>;
   } else {
     let previousDistance =
-      selectedNode > 1
+      selectedNode > 0
         ? coordDistInKm(
-            cities[selectedNode - 2].latitude,
-            cities[selectedNode - 2].longitude,
             cities[selectedNode - 1].latitude,
-            cities[selectedNode - 1].longitude
+            cities[selectedNode - 1].longitude,
+            cities[selectedNode].latitude,
+            cities[selectedNode].longitude
           ).toFixed(2) + "km away"
         : "";
     let nextDistance = cities[selectedNode]
       ? coordDistInKm(
+          cities[selectedNode + 1].latitude,
+          cities[selectedNode + 1].longitude,
           cities[selectedNode].latitude,
-          cities[selectedNode].longitude,
-          cities[selectedNode - 1].latitude,
-          cities[selectedNode - 1].longitude
+          cities[selectedNode].longitude
         ).toFixed(2) + "km away"
       : "";
     return (
@@ -43,7 +43,7 @@ const NodeInfo: React.FC<INodeInfoProps> = ({ cities, selectedNode }) => {
             isNeightbour={true}
           />
           Previous city:{" "}
-          {cities[selectedNode - 2] ? cities[selectedNode - 2].city : "None"}{" "}
+          {cities[selectedNode - 1] ? cities[selectedNode - 1].city : "None"}{" "}
           <br />
           {previousDistance}
         </div>
@@ -54,7 +54,7 @@ const NodeInfo: React.FC<INodeInfoProps> = ({ cities, selectedNode }) => {
             isSelected={true}
             isNeightbour={false}
           />
-          Selected city: {cities[selectedNode - 1].city}
+          Selected city: {cities[selectedNode].city}
         </div>
         <div className="info__cell">
           <Point
@@ -63,7 +63,7 @@ const NodeInfo: React.FC<INodeInfoProps> = ({ cities, selectedNode }) => {
             isSelected={false}
             isNeightbour={true}
           />
-          Next city: {cities[selectedNode] ? cities[selectedNode].city : "None"}{" "}
+          Next city: {cities[selectedNode + 1] ? cities[selectedNode + 1].city : "None"}{" "}
           <br /> {nextDistance}
         </div>
       </div>

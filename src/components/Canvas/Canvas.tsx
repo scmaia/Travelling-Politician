@@ -28,8 +28,8 @@ const Canvas: React.FC<ICanvasProps> = ({
 }) => {
   const canvasRef = useRef(null);
 
-  const onPointSelection = (id: number) => {
-    setSelectedNode(id);
+  const onPointSelection = (index: number) => {
+    setSelectedNode(index);
   };
 
   useEffect(() => {
@@ -61,11 +61,11 @@ const Canvas: React.FC<ICanvasProps> = ({
               key={`city-point${index + 1}`}
               leftDist={adjustX(city.longitude)}
               topDist={adjustY(city.latitude)}
-              isSelected={selectedNode === index + 1}
+              isSelected={selectedNode === index}
               isNeightbour={
-                selectedNode === index || selectedNode === index + 2
+                selectedNode === index - 1 || selectedNode === index + 1
               }
-              onClick={() => onPointSelection(index + 1)}
+              onClick={() => onPointSelection(index)}
             />
           ))}
       </div>
