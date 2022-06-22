@@ -11,7 +11,7 @@ interface INodeInfoProps {
 }
 
 const NodeInfo: React.FC<INodeInfoProps> = ({ cities, selectedNode }) => {
-  if (!cities) {
+  if (cities.length < 1) {
     return <p className="select">Load data to display</p>;
   } else if (!selectedNode) {
     return <p className="select">Select city for more information</p>;
